@@ -1,4 +1,5 @@
 streamlit
-google-generativeai
-langchain-community
 faiss-cpu==1.14.2
+langchain-community
+sentence-transformers==2.2.2
+google-generativeai
