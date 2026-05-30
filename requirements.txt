@@ -4,3 +4,4 @@ langchain-community
 pypdf
 google-generativeai
 sentence-transformers==2.2.2
+torch==2.1.2
