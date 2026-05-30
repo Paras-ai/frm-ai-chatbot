@@ -9,7 +9,7 @@ st.set_page_config(page_title="FRM AI Assistant", page_icon="📘", layout="wide
 st.title("📘 FRM AI Chatbot (Hybrid: Books + AI)")
 
 # ---------- GEMINI SETUP ----------
-genai.configure(api_key="YOUR_GEMINI_API_KEY")
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 # ---------- EMBEDDINGS ----------
