@@ -1,4 +1,6 @@
 streamlit
+faiss-cpu==1.14.2
 langchain-community
 pypdf
 google-generativeai
+sentence-transformers==2.2.2
