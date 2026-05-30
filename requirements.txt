@@ -1,10 +1,5 @@
---extra-index-url https://download.pytorch.org/whl/cpu
-
 streamlit==1.36.0
 faiss-cpu==1.14.2
-sentence-transformers==2.2.2
-transformers==4.41.0
-torch==2.2.2
 langchain-community
 google-generativeai
 numpy
