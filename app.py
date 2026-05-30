@@ -1,5 +1,6 @@
 import streamlit as st
 from langchain_community.vectorstores import FAISS
+from langchain_community.embeddings import HuggingFaceEmbeddings
 import google.generativeai as genai
 
 # ---------- PAGE CONFIG ----------
@@ -11,9 +12,15 @@ st.title("📘 FRM AI Chatbot (Hybrid: Books + AI)")
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 model = genai.GenerativeModel("gemini-1.5-flash")
 
+# ---------- EMBEDDINGS (IMPORTANT FIX) ----------
+embedding = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
+
 # ---------- LOAD VECTOR DB ----------
 db = FAISS.load_local(
-    "VectorDB",   # IMPORTANT: use relative path for cloud
+    "VectorDB",
+    embedding,
     allow_dangerous_deserialization=True
 )
 
