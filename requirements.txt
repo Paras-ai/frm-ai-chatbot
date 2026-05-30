@@ -1,4 +1,6 @@
 streamlit
 faiss-cpu==1.14.2
+sentence-transformers
+langchain-community
 google-generativeai
 numpy
