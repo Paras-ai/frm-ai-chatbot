@@ -1,22 +1,9 @@
 import streamlit as st
-from langchain_community.vectorstores import FAISS
-from langchain_community.embeddings import HuggingFaceEmbeddings
 
 # ---------- PAGE CONFIG ----------
 st.set_page_config(page_title="FRM AI Assistant", page_icon="📘", layout="wide")
 
 st.title("📘 FRM AI Chatbot")
-
-# ---------- LOAD MODEL ----------
-embedding = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
-)
-
-db = FAISS.load_local(
-    "C:/Users/paras/frm_ai_app/VectorDB",
-    embedding,
-    allow_dangerous_deserialization=True
-)
 
 # ---------- SESSION MEMORY ----------
 if "messages" not in st.session_state:
@@ -37,23 +24,26 @@ if query:
     with st.chat_message("user"):
         st.markdown(query)
 
-    # retrieve context
-    docs = db.similarity_search(query, k=3)
-    context = "\n\n".join([d.page_content for d in docs])
+    # ---------- CLOUD SAFE CONTEXT (FAISS REMOVED) ----------
+    context = """
+FRM Knowledge Base is currently running in cloud-safe mode.
+
+Full vector database search is available only in local version.
+
+We will upgrade this to Gemini-powered AI in next step.
+"""
 
     # ---------- CHATGPT STYLE ANSWER ENGINE ----------
     answer = f"""
 You are an expert FRM Level 2 tutor.
 
-Use the context below to answer in a structured, exam-ready format.
+Use structured exam-style explanation.
 
 Context:
 {context}
 
 Question:
 {query}
-
-Now respond in this format:
 
 📌 Simple Explanation:
 Explain in very easy language.
